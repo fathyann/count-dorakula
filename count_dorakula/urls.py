@@ -22,6 +22,6 @@ import api.urls as api
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', index, name="index"),
-    url(r'^9B32BA7DEB7DBF308DF6436B8632C25661B12BDCBFDC09B26D451B37FDFCB668/$', dashboard)
+    url(r'^9B32BA7DEB7DBF308DF6436B8632C25661B12BDCBFDC09B26D451B37FDFCB668/$', dashboard),
     url(r'^api/', include(api, namespace='api')),
 ]

@@ -1,4 +1,73 @@
 {% extends "layout/base.html" %}
 {% block content %}
-    <h1>hi ass</h1>
+    <form id="register-form">
+        <label for="name">Nama</label>
+        <input id="register-name-field" type="text" name="name">
+        <input type="submit" value="Register!">
+    </form>
+    <button id="normal-pop">Pop normal queue</button>
+    <button id="skipped-pop">Pop skipped queue</button>
+    <button id="requeue">Requeue</button>
+    <script type="text/javascript">
+        $("#register-form").on("submit", function() {
+            var name = $("#register-name-field").val();
+            $.ajax({
+                method: "POST",
+                url: '{% url "api:register" %}',
+                dataType: 'json',
+                data: {name: name},
+                success: function(response) {
+                    alert(name + " registered successfully!");
+                },
+                error: function(error) {
+                    alert(error.error);
+                }
+            });
+
+            $("#register-name-field").val('');
+            event.preventDefault();
+        });
+
+        $("#normal-pop").on("click", function() {
+            $.ajax({
+                method: "POST",
+                url: '{% url "api:pop_queue" %}',
+                dataType: 'json',
+                success: function(response) {
+                    console.log(response);
+                },
+                error: function(error) {
+                    alert(error.responseJSON.error);
+                }
+            });
+        });
+
+        $("#skipped-pop").on("click", function() {
+            $.ajax({
+                method: "POST",
+                url: '{% url "api:pop_retry" %}',
+                dataType: 'json',
+                success: function(response) {
+                    console.log(response);
+                },
+                error: function(error) {
+                    alert(error.responseJSON.error);
+                }
+            });
+        });
+
+        $("#requeue").on("click", function() {
+            $.ajax({
+                method: "POST",
+                url: '{% url "api:requeue" %}',
+                dataType: 'json',
+                success: function(response) {
+                    console.log(response);
+                },
+                error: function(error) {
+                    alert(error.responseJSON.error);
+                }
+            });
+        });
+    </script>
 {% endblock content %}
