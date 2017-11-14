@@ -16,9 +16,10 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 import counter.urls as counter
-from counter.views import index
+from counter.views import index, dashboard
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', index, name="index"),
+    url(r'^9B32BA7DEB7DBF308DF6436B8632C25661B12BDCBFDC09B26D451B37FDFCB668/$', dashboard)
 ]

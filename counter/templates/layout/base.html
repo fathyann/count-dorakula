@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dorakula!</title>
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    <style type="text/css">
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: #C9533E;
+            color: white;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .counter {
+            text-align: center;
+            line-height: 5em;
+        }
+
+        .counter-header {
+            font-size: 3.5em;
+            line-height: 0;
+        }
+
+        .counter-number {
+            font-size: 7.5em;
+            line-height: 0.5em;
+        }
+
+        .light {
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    {% block content %}{% endblock content %}    
+</body>
+</html>
