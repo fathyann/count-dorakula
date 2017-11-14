@@ -2,8 +2,45 @@
 <html>
 <head>
     <title>Halo</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Open+Sans" rel="stylesheet">
+    <style type="text/css">
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #C9533E;
+            color: white;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .counter {
+            text-align: center;
+            line-height: 5em;
+        }
+
+        .counter h1 {
+            font-size: 8em;
+        }
+
+        .counter-header {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 500;
+        }
+    </style>
 </head>
-<body style="background: red">
-    <h1 style="background: none">Hi</h1>
+<body>
+    <div class="container">
+        <div class="counter">
+            <h1 class="counter-header">Current</h1>
+            <h1>1</h1>
+        </div>
+    </div>
 </body>
 </html>
