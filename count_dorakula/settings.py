@@ -14,7 +14,6 @@ import os
 import dj_database_url
 import environ
 
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -22,7 +21,7 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 env = environ.Env(DEBUG=(bool, False),) # set default values and casting
 environ.Env.read_env(BASE_DIR + "/.env") # reading .env file
 
-PRODUCTION = os.environ.get('DATABASE_URL') != None
+PRODUCTION = env('DATABASE_URL') != None
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
@@ -90,7 +89,6 @@ DATABASES = {
 }
 
 if PRODUCTION:
-    DEBUG = False
     DATABASES['default'] = dj_database_url.config()
 
 # Password validation
