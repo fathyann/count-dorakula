@@ -8,6 +8,8 @@
     <button id="normal-pop">Pop normal queue</button>
     <button id="skipped-pop">Pop skipped queue</button>
     <button id="requeue">Requeue Current</button>
+{% endblock content %}
+{% block script %}
     <script type="text/javascript">
         $("#register-form").on("submit", function() {
             var name = $("#register-name-field").val();
@@ -70,4 +72,5 @@
             });
         });
     </script>
-{% endblock content %}
+    
+{% endblock script %}
