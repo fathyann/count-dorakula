@@ -73,11 +73,14 @@ def pop_retry(request):
 def requeue(request):
   if request.method == 'POST':
     top = Top.objects.first()
-    last = Retry.objects.create(name=top.name, number=top.number)
-    response = {
-      'id' : last.number,
-      'name' : last.name
-    }
-    return JsonResponse(response, safe=False)
+    if not Retry.objects.filter(number=top.number).exists():
+      last = Retry.objects.create(name=top.name, number=top.number)
+      response = {
+        'id' : last.number,
+        'name' : last.name
+      }
+      return JsonResponse(response, safe=False)
+    else:
+      return JsonResponse({'error': 'This person already requeued'}, safe=False, status=400)
   else:
     return JsonResponse({'error':'POST Only'}, safe=False)
