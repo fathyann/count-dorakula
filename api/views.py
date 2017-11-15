@@ -1,6 +1,8 @@
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
+from django.core import serializers
+
 from .models import Queue, Retry, Top
 import json
 
@@ -84,3 +86,9 @@ def requeue(request):
       return JsonResponse({'error': 'This person already requeued'}, safe=False, status=400)
   else:
     return JsonResponse({'error':'POST Only'}, safe=False)
+
+def get_skipped(request):
+  data = serializers.serialize('json', Retry.objects.all())
+  struct = json.loads(data)
+
+  return JsonResponse({"data": struct})
