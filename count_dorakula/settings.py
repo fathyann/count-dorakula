@@ -18,19 +18,21 @@ import environ
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
-env = environ.Env(DEBUG=(bool, False),) # set default values and casting
-environ.Env.read_env(BASE_DIR + "/.env") # reading .env file
 
-PRODUCTION = env('DATABASE_URL') != None
+PRODUCTION = os.environ.get('DATABASE_URL') != None
+
+if not PRODUCTION:
+    env = environ.Env(DEBUG=(bool, False),) # set default values and casting
+    environ.Env.read_env(BASE_DIR + "/.env") # reading .env file
+    SECRET_KEY = env('SECRET_KEY')
+    DEBUG = env('DEBUG')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = ['*']
 
@@ -89,6 +91,8 @@ DATABASES = {
 }
 
 if PRODUCTION:
+    SECRET_KEY = os.environ.get('SECRET_KEY')
+    DEBUG = os.environ.get('DEBUG')
     DATABASES['default'] = dj_database_url.config()
 
 # Password validation
