@@ -3,10 +3,10 @@
     <div class="container">
         <div>
             <div id="counter">
-                <h1 class="counter-header light">Antrian Selanjutnya</h1>
+                <h1 class="counter-header light">Next</h1>
             </div>
             <div id="skipped-list">
-                <h2 class="light">Yang diskip</h2>
+                <h2 class="light">Skipped</h2>
             </div>
         </div>
     </div>
@@ -19,7 +19,7 @@
                 url: '{% url "api:get_top" %}',
                 dataType: "json",
                 success: function(response) {
-                    $("#counter").append('<h1 id="counter-number">' + response.id + '. ' + response.name + '</h1>');
+                    $("#counter").append('<h1 id="counter-number">' + response.id + response.name + '</h1>');
                 },
                 error: function(error) {
                     $("#counter").append('<h1 id="counter-number">Tidak Ada</h1>');
